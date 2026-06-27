@@ -1,9 +1,33 @@
+# Python / tooling
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
 .pytest_cache/
 .ruff_cache/
-gex_gamma.db
-snapshots/
-*.egg-info/
+.coverage
+htmlcov/
+
+# Secrets & env
 .env
+.env.*
+!.env.example
+
+# Local data (production uses /var/lib)
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+snapshots/
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/secrets.local.toml
+
+# IDE / OS
+.idea/
+.cursor/
+.DS_Store
+Thumbs.db
