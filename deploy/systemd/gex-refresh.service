@@ -1,0 +1,15 @@
+[Unit]
+Description=GEX gamma snapshot refresh and signal publish
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/root/quant/gex-gamma
+EnvironmentFile=/root/quant/gex-gamma/.env
+Environment=GEX_GAMMA_CACHE_BACKEND=inprocess
+ExecStart=/bin/bash -c '/root/quant/gex-gamma/.venv/bin/gex-refresh && /root/quant/gex-gamma/.venv/bin/gex-signal --out /var/lib/gex-gamma/snapshots/latest.json --persist'
+
+[Install]
+WantedBy=multi-user.target

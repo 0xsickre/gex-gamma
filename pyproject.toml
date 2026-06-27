@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gex-gamma"
+version = "0.1.0"
+description = "Dealer Gamma Exposure (GEX) for SPX/NDX — Massive option chain measurement + snapshot publisher"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.0,<3",
+  "numpy>=1.26",
+  "yfinance>=0.2",
+  "requests>=2.31",
+  "streamlit>=1.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.4"]
+pg = ["psycopg2-binary>=2.9", "sqlalchemy>=2.0"]
+
+[project.scripts]
+gex-refresh = "gex_gamma.cli.refresh_snapshot:main"
+gex-signal = "gex_gamma.cli.run_gex_signal:main"
+gex-backfill = "gex_gamma.cli.backfill:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gex_gamma*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

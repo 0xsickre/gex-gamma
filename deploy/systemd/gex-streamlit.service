@@ -1,0 +1,15 @@
+[Unit]
+Description=GEX gamma Streamlit dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/quant/gex-gamma
+EnvironmentFile=/root/quant/gex-gamma/.env
+ExecStart=/root/quant/gex-gamma/.venv/bin/streamlit run app.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

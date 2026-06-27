@@ -1,0 +1,11 @@
+[Unit]
+Description=GEX gamma git pull and service restart
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/quant/gex-gamma
+ExecStart=/root/quant/gex-gamma/scripts/vps-deploy.sh
+
+[Install]
+WantedBy=multi-user.target
