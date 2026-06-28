@@ -4,12 +4,18 @@ After=network.target
 
 [Service]
 Type=simple
-User=root
+User=quant
+Group=quant
 WorkingDirectory=/root/quant/gex-gamma
 EnvironmentFile=/root/quant/gex-gamma/.env
 ExecStart=/root/quant/gex-gamma/.venv/bin/streamlit run app.py
 Restart=always
 RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/root/quant/gex-gamma /var/lib/gex-gamma
 
 [Install]
 WantedBy=multi-user.target
